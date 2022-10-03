@@ -36,7 +36,7 @@ that one may need about fast foods into one package.
         corresponds to the radio button input. This function lets use
         chose a restaurant as an argument and then displays the top 5
         items from that restaurant with the highest cholesterol
-        quantity.  
+        quantity.
 
 -   One can also launch an interactive shiny app about the fast food
     data set from this package using the run_app() function to see

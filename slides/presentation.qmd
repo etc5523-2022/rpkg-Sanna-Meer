@@ -1,0 +1,142 @@
+---
+title: "World of Fast Food"
+author: "Sanna Meer"
+format:
+  revealjs:
+   incremental: true  
+   theme: moon
+---
+
+## Do you know about fast foods?  Do you know enough about fast foods? {background-color="red" background-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlR8kMF867aPA5AvM4SPGGGsnIcW0IV7zfQA&usqp=CAU" }
+
+## Overview
+
+-   Intro 👋
+
+-   Inbuilt data set ℹ️
+
+-   Run a shiny app ✔️
+
+-   Calorie Convertor function 🌯
+
+-   Sugar Content Function 🍫
+
+-   Cholesterol Function 🎚️
+
+-   Conclusion 🔚
+
+## Introduction 
+
+It is no secret that a massive chunk of the population are junk food eaters. This percentage of the junk eating population increases as you move to the younger section of the society.
+
+. . .
+
+\*\*fastfoodworld\*\* is an R package that makes it easier to understand the nutritinal breakdown of fastfood items. This package is created by Sanna Meer.
+
+. . .
+
+This package has an in built data set to show nutritional composition of fast food items, along with a fucntion to launch a fast food shiny app from within the package. There are also some functions that can be used for better understanding of fast food data.
+
+## Inbuilt data set
+
+The package comes in with a built-in dataset called \*\*fastfoodinfo\*\* that can loaded up after loading the package library. That data set has nutritional information on various fast food items from various fast food joints like fats, calories, sugar, cholesterol and so on.
+
+. . .
+
+```{r}
+library(fastfoodworld)
+head(fastfoodinfo, 2)
+```
+
+## Run a shiny app
+
+One can also launch an interactive shiny app about the fast food data set from this package using the run_app() function to see statistical summaries in the form of graphics and plots . The user is free to make the choice of inputs to see the respective output on the shiny app.
+
+```{r, echo=TRUE}
+run_app <- function() {
+  app_dir <- system.file("myapp", package = "fastfoodworld")
+  shiny::runApp(app_dir, display.mode = "normal")
+}
+```
+
+## Calories in kg() function
+
+The calories of food items are usually measured in grams. However, on research I found that some places in the world like to measure and read their calories in Kgs for easy understanding. With this function, we can convert a calorie value to kgs so that the section of the world that likes to read their calories in kgs can benefit and understand their food nutrition as well. The function takes in one argument - calories in grams and the output is the equivalent value in kilogram. For example :
+
+```{r, echo = TRUE, eval=TRUE}
+calories_in_Kg <- function(calories) {
+  cal <- calories/1000
+  return(cal)
+}
+```
+
+## Sugar Content() function
+
+In order to better understand if a fast food item qualified as high sugar item or a low sugar item, this function comes handy. Universally speaking, if sugar content in grams of a single item is more than 8, it is on the higher side of the scale. This function takes a sugar quantity value in grams as an argument and returns a message explaining if that's high sugar or low sugar. For example :
+
+```{r, echo=TRUE, eval=TRUE}
+sugar_content<- function(sugar) {
+  if(sugar >= 8)
+  print("Beware! High Sugar Quantity!!!")
+  else print("Low Sugar Quantity!")
+}
+```
+
+. . .
+
+For example, sugar_content(50) returns the following :
+
+"Beware! High Sugar Quantity!!!"
+
+While sugar_content(6)
+
+"Low Sugar Quantity!"
+
+## Cholesterol function
+
+This function is related to the shiny app talked about earlier. This function creates a parameterised version of thr cholesterol plot in the Shiny app where the function argument(s) corresponds to the radio button input. This function lets use chose a restaurant as an argument and then displays the top 5 items from that restaurant with the highest cholesterol quantity. For example :
+
+```{r, echo=TRUE, eval=TRUE}
+cholesterol <- function(restaurant) {
+  require(shiny)
+  shinyApp(
+    ui = fluidPage(
+      sidebarLayout(
+        sidebarPanel(
+                     radioButtons("choice", "Choice:",
+                                  c("Mcdonalds",
+                                    "Chick Fil-A",
+                                    "Sonic",
+                                    "Arbys",
+                                    "Burger King",
+                                    "Subway",
+                                    "Taco Bell"
+      )
+    )
+    ),
+    mainPanel(textOutput("chol"))
+
+      )
+    ),
+
+    server = function(input, output) {
+      output$chol <- renderText(
+            # MODIFY CODE BELOW: Filter for the selected rest
+            filter(restaurant == input$choice) %>%
+            print((sort(cholesterol,decreasing=TRUE)))
+      )
+    }
+      )
+}
+
+```
+
+. . .
+
+cholesterol(Mcdonalds) displays the top 5 items in Mcdonalds with the highest cholesterol.
+
+## Conclusion 
+
+The purpose of this package is to give a glimpse into the world of fast food and make everyone a bit more conscious and aware of their food choice. These small steps go a long way in the future.
+
+## The end  {background-image="https://allfreethankyounotes.com/wp-content/uploads/2021/02/all-free-thank-you-gif-8.gif"}
