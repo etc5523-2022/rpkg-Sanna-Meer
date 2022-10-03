@@ -3,7 +3,10 @@ Title: THIS PACKAGE EXPLORES THE NUTRITIONAL BREAKDOWN OF FAST FOOD ITEMS.
 Version: 0.0.0.9000
 Authors@R: 
     person("Sanna", "Meer", , "smee0005@student.monash.edu", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: The goal of fastfoodworld is to pack all the necessary information that one may need about fast foods into one package.
+             It does so by acting as one stop for all the necessary functions or data one may need.
+             This package comes with dataset that has the nutritional information about fast foods along with various handy functions.
+             This package also allows you to launch a fast food related shiny app interactively .
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: es

@@ -54,6 +54,9 @@ You can install the development version of fastfoodworld from
 devtools::install_github("etc5523-2022/rpkg-Sanna-Meer")
 ```
 
+The URL for this package is :
+<https://etc5523-2022.github.io/rpkg-Sanna-Meer/>
+
 ## Example
 
 ### This is the inbuilt data set :
