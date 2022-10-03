@@ -1,11 +1,24 @@
-Package: change-this-to-your-pkg-name
-Title: What the Package Does (One Line, Title Case)
+Package: fastfoodworld
+Title: THIS PACKAGE EXPLORES THE NUTRITIONAL BREAKDOWN OF FAST FOOD ITEMS.
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "your@email.com", role = c("aut", "cre"))
+    person("Sanna", "Meer", , "smee0005@student.monash.edu", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: es
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
+Depends: R (>= 2.10)
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+Imports: 
+    dplyr,
+    magrittr,
+    shiny
+URL: https://etc5523-2022.github.io/rpkg-Sanna-Meer/

@@ -1,0 +1,125 @@
+---
+title: "Understand the world of fast food with fastfoodworld package"
+output: rmarkdown::html_vignette
+date: "04/10/2022"
+vignette: >
+  %\VignetteIndexEntry{Understand the world of fast food with fastfoodworld package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+**fastfoodworld** is an R package that makes it easier to understand the nutritinal breakdown of fastfood items. Below is a concise tour of some of the things fastfoodworld can do for you. This package is created by Sanna Meer.
+
+
+## Inbuilt dataset of the package
+
+This package has a fastfood dataset called *fastfoodinfo* present that can be loaded and various nutritional insights about the fast food items can be gotten from the same. The dataset can be viewed by loading up the library and then accessing it. For example :
+
+```{r data, echo=TRUE}
+library(fastfoodworld)
+head(fastfoodinfo, 2)
+
+```
+
+A documentation of the dataset is also available for easy reference and understanding of the various aspects of this dataset.
+
+
+## Launch a shiny app from this package 
+
+This package also enables us to launch a fast food related shiny app from the package itself. That app contains summaries and plots of various concepts of various fast food items of famous restaurants. The app is launched using the run_app() function that can be called using the following :
+
+```{r shiny, echo=TRUE}
+run_app <- function() {
+  app_dir <- system.file("myapp", package = "fastfoodworld")
+  shiny::runApp(app_dir, display.mode = "normal")
+}
+
+```
+
+Running this command launches the shiny app in another window for us to explore.
+
+## Functions in fastfoodworld package
+
+### Calories conversion - calories_in_Kg() function
+
+The calories of food items are usually measured in grams. However, on research I found that some places in the world like to measure and read their calories in Kgs for easy understanding. With this function, we can convert a calorie value to kgs so that the section of the world that likes to read their calories in kgs can benefit and understand their food nutrition as well. The function takes in one argument - calories in grams and the output is the equivalent value in kilogram. For example :
+
+```{r calories, echo=TRUE}
+calories_in_Kg <- function(calories) {
+  cal <- calories/1000
+  return(cal)
+}
+```
+
+
+ For example : calories_in_Kg(38) returns the value 0.38 and so on.
+ 
+ 
+### Sugar Quantity - sugar_content() function
+
+In order to better understand if a fast food item qualified as high sugar item or a low sugar item, this function comes handy. Universally speaking, if sugar content in grams of a single item is more than 8, it is on the higher side of the scale. This function takes  a sugar quantity value in grams as an argument and returns a message explaining if that's high sugar or low sugar. For example :
+
+```{r sugar, echo=TRUE}
+sugar_content<- function(sugar) {
+  if(sugar >= 8)
+  print("Beware! High Sugar Quantity!!!")
+  else print("Low Sugar Quantity!")
+}
+```
+
+For example, sugar_content(50) returns the following :
+"Beware! High Sugar Quantity!!!"
+
+While sugar_content(6)
+ "Low Sugar Quantity!"
+ 
+### Highest Cholesterol - cholesterol() function
+
+This function is related to the shiny app talked about earlier. This function creates a parameterised version of thr cholesterol plot in the Shiny app where the function argument(s) corresponds to the radio button  input. This function lets use chose a restaurant as an argument and then displays the top 5 items from that restaurant with the highest cholesterol quantity. For example :
+
+```{r}
+cholesterol <- function(restaurant) {
+  require(shiny)
+  shinyApp(
+    ui = fluidPage(
+      sidebarLayout(
+        sidebarPanel(
+                     radioButtons("choice", "Choice:",
+                                  c("Mcdonalds",
+                                    "Chick Fil-A",
+                                    "Sonic",
+                                    "Arbys",
+                                    "Burger King",
+                                    "Subway",
+                                    "Taco Bell"
+      )
+    )
+    ),
+    mainPanel(textOutput("chol"))
+
+      )
+    ),
+
+    server = function(input, output) {
+      output$chol <- renderText(
+            # MODIFY CODE BELOW: Filter for the selected rest
+            filter(restaurant == input$choice) %>%
+            print((sort(cholesterol,decreasing=TRUE)))
+      )
+    }
+      )
+}
+```
+
+cholesterol(Mcdonalds) displays the top 5 items in Mcdonalds with the highest cholesterol.
+
+## Resources :
+
+The data is taken from the [Fast Food Nutrition](https://fastfoodnutrition.org/) website
