@@ -7,7 +7,7 @@ format:
    theme: moon
 ---
 
-## Do you know about fast foods?  Do you know enough about fast foods? {background-color="red" background-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlR8kMF867aPA5AvM4SPGGGsnIcW0IV7zfQA&usqp=CAU" }
+## Do you know about fast foods? Do you know enough about fast foods? {background-color="red" background-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlR8kMF867aPA5AvM4SPGGGsnIcW0IV7zfQA&usqp=CAU"}
 
 ## Overview
 
@@ -25,7 +25,7 @@ format:
 
 -   Conclusion 🔚
 
-## Introduction 
+## Introduction
 
 It is no secret that a massive chunk of the population are junk food eaters. This percentage of the junk eating population increases as you move to the younger section of the society.
 
@@ -135,8 +135,8 @@ cholesterol <- function(restaurant) {
 
 cholesterol(Mcdonalds) displays the top 5 items in Mcdonalds with the highest cholesterol.
 
-## Conclusion 
+## Conclusion
 
 The purpose of this package is to give a glimpse into the world of fast food and make everyone a bit more conscious and aware of their food choice. These small steps go a long way in the future.
 
-## The end  {background-image="https://allfreethankyounotes.com/wp-content/uploads/2021/02/all-free-thank-you-gif-8.gif"}
+## The end {background-image="https://allfreethankyounotes.com/wp-content/uploads/2021/02/all-free-thank-you-gif-8.gif"}
